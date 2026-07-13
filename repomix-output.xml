@@ -1,3 +1,71 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+app/
+  favicon.ico
+  globals.css
+  layout.tsx
+  page.jsx
+public/
+  file.svg
+  globe.svg
+  next.svg
+  vercel.svg
+  window.svg
+.gitignore
+AGENTS.md
+CLAUDE.md
+eslint.config.mjs
+next.config.ts
+package.json
+postcss.config.mjs
+README.md
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="app/page.jsx">
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -5,7 +73,6 @@ import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   Award,
-  BookOpen,
   Camera,
   ChevronDown,
   Clapperboard,
@@ -127,10 +194,6 @@ function Button({ href, variant = "solid", className, children }) {
     "border border-white/70 text-white hover:bg-white hover:text-black";
   const ghostGold =
     "border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-black";
-  const navCta =
-    "border border-[#C9A84C] text-[#C9A84C] bg-[#1E293B] hover:bg-[#C9A84C] hover:text-[#1E293B]";
-  const darkOutline =
-    "border border-white/20 bg-black/40 text-white hover:bg-white hover:text-black";
 
   const cls = cx(
     base,
@@ -138,11 +201,7 @@ function Button({ href, variant = "solid", className, children }) {
       ? solid
       : variant === "ghostGold"
         ? ghostGold
-        : variant === "navCta"
-          ? navCta
-          : variant === "darkOutline"
-            ? darkOutline
-            : ghostWhite,
+        : ghostWhite,
     className
   );
 
@@ -205,12 +264,14 @@ export default function HomePage() {
 
   const gallery = useMemo(
     () => [
-      { id: 101, h: "h-[260px]", src: "/wedding_1.png" },
-      { id: 102, h: "h-[420px]", src: "/wedding_2.png" },
-      { id: 103, h: "h-[320px]", src: "/wedding_3.png" },
-      { id: 104, h: "h-[520px]", src: "/wedding_4.png" },
-      { id: 105, h: "h-[360px]", src: "/wedding_5.png" },
-      { id: 106, h: "h-[460px]", src: "/wedding_6.png" },
+      { id: 101, h: "h-[260px]" },
+      { id: 102, h: "h-[420px]" },
+      { id: 103, h: "h-[320px]" },
+      { id: 104, h: "h-[520px]" },
+      { id: 105, h: "h-[360px]" },
+      { id: 106, h: "h-[460px]" },
+      { id: 107, h: "h-[300px]" },
+      { id: 108, h: "h-[560px]" },
     ],
     []
   );
@@ -250,7 +311,7 @@ export default function HomePage() {
             : "bg-transparent"
         )}
       >
-        <nav className="w-full max-w-screen-xl mx-auto flex items-center justify-between px-5 md:px-8 py-4">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-8 py-4">
           <a
             href="#home"
             className={cx(
@@ -258,39 +319,38 @@ export default function HomePage() {
               isDark ? "text-white" : "text-[#333333]"
             )}
           >
-            FBV
+            RVR PRO
           </a>
 
-          <ul className="hidden md:flex items-center gap-8 text-[11px] tracking-[0.26em] uppercase list-none">
+          <div className="hidden md:flex items-center gap-8 text-[11px] tracking-[0.26em] uppercase">
             {[
-              ["HOME", "#home"],
-              ["ABOUT", "#about"],
-              ["SERVICES", "#services"],
-              ["GALLERY", "#gallery"],
-              ["TESTIMONIALS", "#testimonials"],
-              ["CONTACT", "#contact"],
+              ["Home", "#home"],
+              ["About", "#about"],
+              ["Services", "#services"],
+              ["Gallery", "#gallery"],
+              ["Testimonials", "#testimonials"],
+              ["Contact", "#contact"],
             ].map(([label, href]) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="text-white/85 hover:text-white transition-colors"
-                >
-                  {label}
-                </a>
-              </li>
+              <a
+                key={href}
+                href={href}
+                className="text-white/85 hover:text-white transition-colors"
+              >
+                {label}
+              </a>
             ))}
-          </ul>
+          </div>
 
           <div className="flex items-center gap-3">
             <div className="hidden md:block">
-              <Button href="#contact" variant="navCta" className="px-5 py-2.5">
-                BOOK NOW →
+              <Button href="#contact" variant="ghostGold" className="px-5 py-2.5">
+                Book Now <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
             <button
               type="button"
               className={cx(
-                "flex md:hidden h-10 w-10 items-center justify-center rounded-full transition",
+                "md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full transition",
                 isDark
                   ? "border border-white/15 bg-white/5 hover:bg-white/10"
                   : "border border-black/10 bg-black/5 hover:bg-black/10"
@@ -307,13 +367,13 @@ export default function HomePage() {
           initial={false}
           animate={menuOpen ? "open" : "closed"}
           variants={{
-            open: { opacity: 1, pointerEvents: "auto", display: "block" },
-            closed: { opacity: 0, pointerEvents: "none", transitionEnd: { display: "none" } },
+            open: { opacity: 1, pointerEvents: "auto" },
+            closed: { opacity: 0, pointerEvents: "none" },
           }}
           className="md:hidden"
         >
           <div className="absolute inset-0" aria-hidden="true" />
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 pb-6">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 pb-6">
             <div className="rounded-3xl border border-white/10 bg-[#0A0A0A]/95 backdrop-blur-xl p-5 shadow-[0_30px_80px_rgba(0,0,0,0.8)]">
               <div className="flex items-center justify-between">
                 <div className="text-[11px] tracking-[0.26em] uppercase text-white/70">
@@ -331,12 +391,12 @@ export default function HomePage() {
 
               <div className="mt-4 grid gap-2 text-[12px] tracking-[0.24em] uppercase">
                 {[
-                  ["HOME", "#home"],
-                  ["ABOUT", "#about"],
-                  ["SERVICES", "#services"],
-                  ["GALLERY", "#gallery"],
-                  ["TESTIMONIALS", "#testimonials"],
-                  ["CONTACT", "#contact"],
+                  ["Home", "#home"],
+                  ["About", "#about"],
+                  ["Services", "#services"],
+                  ["Gallery", "#gallery"],
+                  ["Testimonials", "#testimonials"],
+                  ["Contact", "#contact"],
                 ].map(([label, href]) => (
                   <a
                     key={href}
@@ -355,8 +415,8 @@ export default function HomePage() {
               </div>
 
               <div className="mt-4">
-                <Button href="#contact" variant="navCta" className="w-full">
-                  BOOK NOW →
+                <Button href="#contact" variant="ghostGold" className="w-full">
+                  Book Now <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>
             </div>
@@ -365,7 +425,7 @@ export default function HomePage() {
       </header>
 
       <main id="home">
-        <section className="relative min-h-screen overflow-hidden">
+        <section className="relative min-h-[100vh] overflow-hidden">
           <video
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
@@ -382,7 +442,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_20%,rgba(201,168,76,0.18)_0%,rgba(0,0,0,0)_55%)]" />
 
-          <div className="relative w-full max-w-screen-xl mx-auto flex min-h-screen flex-col justify-center px-4 md:px-12 pt-24 pb-20">
+          <div className="relative mx-auto flex min-h-[100vh] max-w-6xl flex-col justify-center px-5 md:px-8 pt-24 pb-20">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -393,34 +453,35 @@ export default function HomePage() {
                 variants={fadeInUp}
                 className="text-[11px] sm:text-xs tracking-[0.38em] uppercase text-[#C9A84C]"
               >
-                WEDDING STORYTELLERS IN HYDERABAD
+                WEDDING STORYTELLERS · HYDERABAD
               </motion.p>
 
               <motion.h1
                 variants={fadeInUp}
-                className="mt-7 font-[var(--font-serif)] font-semibold leading-[0.95] text-4xl md:text-6xl lg:text-8xl"
+                className="mt-7 font-[var(--font-serif)] font-semibold leading-[0.95] text-5xl sm:text-6xl lg:text-7xl"
               >
-                Crafted with Love,
+                Made in Heaven,
                 <br />
-                <span className="text-white">Framed by <span className="font-[var(--font-serif)] font-extrabold">VARUN</span></span>
+                <span className="text-white">Framed by RVR PRO</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeInUp}
                 className="mx-auto mt-6 max-w-2xl text-sm sm:text-base leading-loose text-[#AAAAAA]"
               >
-                Timeless wedding stories, captured with elegance and emotion.
+                Dark, cinematic wedding films and photography—crafted like a
+                feature, felt like a memory.
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
-                className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4 w-full"
+                className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Button href="#gallery" variant="solid" className="w-full md:w-auto">
-                  EXPLORE OUR STORIES
+                <Button href="#gallery" variant="solid">
+                  View Our Work <Play className="h-4 w-4" />
                 </Button>
-                <Button href="#contact" variant="darkOutline" className="w-full md:w-auto">
-                  {"LET'S TALK →"}
+                <Button href="#contact" variant="ghostWhite">
+                  Get in Touch <ArrowRight className="h-4 w-4" />
                 </Button>
               </motion.div>
             </motion.div>
@@ -491,9 +552,9 @@ export default function HomePage() {
 
         <section
           id="about"
-          className={cx("relative overflow-hidden", isDark ? "bg-[#0A0A0A]" : "bg-[#FCF9F5]")}
+          className={cx("relative", isDark ? "bg-[#0A0A0A]" : "bg-[#FCF9F5]")}
         >
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 py-16 md:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <motion.div
                 initial="hidden"
@@ -556,11 +617,11 @@ export default function HomePage() {
                   want their wedding to feel like a legacy.
                 </p>
 
-                 <div className="mt-10 flex flex-col sm:block">
-                   <Button href="#contact" variant="ghostGold" className="w-full sm:w-auto">
-                     Know More <ArrowRight className="h-4 w-4" />
-                   </Button>
-                 </div>
+                <div className="mt-10">
+                  <Button href="#contact" variant="ghostGold">
+                    Know More <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </div>
 
                 <div className="mt-10 grid grid-cols-3 gap-4">
                   {[
@@ -596,9 +657,9 @@ export default function HomePage() {
 
         <section
           id="services"
-          className={cx("relative overflow-hidden", isDark ? "bg-[#111111]" : "bg-[#E8E2D6]")}
+          className={cx("relative", isDark ? "bg-[#111111]" : "bg-[#E8E2D6]")}
         >
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 py-16 md:py-24">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -607,14 +668,15 @@ export default function HomePage() {
               className="text-center"
               style={{ willChange: "transform" }}
             >
-              <SectionTitle kicker="WHAT WE CRAFT" title="Crafting Memories That Last Forever." center />
+              <SectionTitle kicker="What We Craft" title="Services built like cinema." center />
               <p
                 className={cx(
                   "mx-auto mt-5 max-w-2xl text-sm leading-loose",
                   isDark ? "text-[#AAAAAA]" : "text-[#333333]/75"
                 )}
               >
-                We create wedding films, photographs, and albums that preserve emotions, details, and memories for generations to come.
+                Films, photography, and albums that preserve your wedding with
+                drama, detail, and timeless restraint.
               </p>
             </motion.div>
 
@@ -628,21 +690,18 @@ export default function HomePage() {
               {[
                 {
                   icon: Film,
-                  title: "Wedding Films",
-                  desc: "Emotion-driven cinematic films crafted to relive your wedding day for years to come.",
-                  link: "EXPLORE FILMS →",
+                  title: "Films",
+                  desc: "Moody, cinematic storytelling with pacing, sound, and color that feels like a feature.",
                 },
                 {
                   icon: Camera,
                   title: "Photography",
-                  desc: "Authentic moments and timeless portraits captured with elegance and creativity.",
-                  link: "EXPLORE GALLERY →",
+                  desc: "Bold compositions and honest emotion—crafted with luxury editorial polish.",
                 },
                 {
-                  icon: BookOpen,
+                  icon: ImageIcon,
                   title: "Albums",
-                  desc: "Handcrafted albums designed to preserve your story in its most beautiful form.",
-                  link: "EXPLORE ALBUMS →",
+                  desc: "Heirloom books designed like a magazine spread—built to be touched and kept.",
                 },
               ].map((s) => (
                 <motion.div
@@ -653,8 +712,10 @@ export default function HomePage() {
                   style={{ willChange: "transform" }}
                   className={cx(
                     "group relative rounded-3xl p-8",
-                    "bg-[#0D0D0D] border border-white/10 text-white",
-                    "shadow-[0_18px_70px_rgba(0,0,0,0.55)]",
+                    isDark
+                      ? "bg-[#1A1A1A] border border-white/10"
+                      : "bg-[#FCF9F5] border border-black/10",
+                    "shadow-[0_18px_70px_rgba(0,0,0,0.35)]",
                     "transition-all duration-300 hover:-translate-y-1.5"
                   )}
                 >
@@ -662,18 +723,23 @@ export default function HomePage() {
                   <div className="flex items-center gap-3">
                     <div
                       className={cx(
-                        "flex h-12 w-12 items-center justify-center rounded-2xl border bg-black/40 border-white/10"
+                        "flex h-12 w-12 items-center justify-center rounded-2xl border",
+                        isDark
+                          ? "bg-black/40 border-white/10"
+                          : "bg-black/5 border-black/10"
                       )}
                     >
                       <s.icon
                         className={cx(
-                          "h-5 w-5 text-[#C9A84C]"
+                          "h-5 w-5",
+                          isDark ? "text-[#C9A84C]" : "text-[#D4AF37]"
                         )}
                       />
                     </div>
                     <h3
                       className={cx(
-                        "font-[var(--font-serif)] text-2xl text-white"
+                        "font-[var(--font-serif)] text-2xl",
+                        isDark ? "text-white" : "text-[#333333]"
                       )}
                     >
                       {s.title}
@@ -681,18 +747,20 @@ export default function HomePage() {
                   </div>
                   <p
                     className={cx(
-                      "mt-5 text-sm leading-loose text-[#AAAAAA]"
+                      "mt-5 text-sm leading-loose",
+                      isDark ? "text-[#AAAAAA]" : "text-[#333333]/75"
                     )}
                   >
                     {s.desc}
                   </p>
                   <div
                     className={cx(
-                      "mt-7 h-px w-full bg-white/10"
+                      "mt-7 h-px w-full",
+                      isDark ? "bg-white/10" : "bg-black/10"
                     )}
                   />
-                  <div className="mt-5 inline-flex items-center gap-2 text-xs tracking-[0.22em] uppercase text-white/70 group-hover:text-[#C9A84C] transition">
-                    {s.link}
+                  <div className="mt-5 inline-flex items-center gap-2 text-xs tracking-[0.22em] uppercase text-white/70 group-hover:text-white transition">
+                    Explore <ArrowRight className="h-4 w-4 text-[#C9A84C]" />
                   </div>
                 </motion.div>
               ))}
@@ -702,9 +770,9 @@ export default function HomePage() {
 
         <section
           id="gallery"
-          className="relative bg-[#0A0A0A] text-white overflow-hidden"
+          className={cx("relative", isDark ? "bg-[#0A0A0A]" : "bg-[#FCF9F5]")}
         >
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 py-16 md:py-24">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -714,14 +782,20 @@ export default function HomePage() {
               style={{ willChange: "transform" }}
             >
               <h2
-                className="font-[var(--font-serif)] text-3xl md:text-5xl text-white"
+                className={cx(
+                  "font-[var(--font-serif)] text-3xl md:text-5xl",
+                  isDark ? "text-white" : "text-[#333333]"
+                )}
               >
-                STORIES WE FRAMED
+                Framed Forever
               </h2>
               <p
-                className="mx-auto mt-5 max-w-2xl text-sm leading-loose text-[#AAAAAA]"
+                className={cx(
+                  "mx-auto mt-5 max-w-2xl text-sm leading-loose",
+                  isDark ? "text-[#AAAAAA]" : "text-[#333333]/75"
+                )}
               >
-                A GLIMPSE INTO THE LOVE STORIES WE'VE HAD THE HONOR TO CAPTURE. ✨📸
+                A mixed grid—high contrast, rich shadows, and gold highlights.
               </p>
             </motion.div>
 
@@ -730,17 +804,21 @@ export default function HomePage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-              className="mt-12 columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]"
+              className="mt-12 columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]"
             >
               {gallery.map((img) => (
-                <div key={img.id} className="mb-4 break-inside-avoid w-full">
+                <div key={img.id} className="mb-6 break-inside-avoid">
                   <motion.a
                     variants={galleryItem}
                     whileHover={{ scale: 1.04 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     style={{ willChange: "transform" }}
                     href="#contact"
-                    className="group relative block w-full overflow-hidden rounded-3xl border border-white/10 shadow-[0_24px_90px_rgba(0,0,0,0.35)]"
+                    className={cx(
+                      "group relative block overflow-hidden rounded-3xl",
+                      isDark ? "border border-white/10" : "border border-black/10",
+                      "shadow-[0_24px_90px_rgba(0,0,0,0.35)]"
+                    )}
                   >
                     <div
                       className={cx(
@@ -748,22 +826,31 @@ export default function HomePage() {
                         img.h
                       )}
                       style={{
-                        backgroundImage: `url('${img.src}')`,
+                        backgroundImage: `url('https://picsum.photos/900/1200?random=${img.id}')`,
                       }}
                     />
-                    <div className="absolute inset-0 bg-black/25" />
+                    <div className={cx("absolute inset-0", isDark ? "bg-black/25" : "bg-black/10")} />
                     <div className="absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                       <div
-                        className="backdrop-blur-sm px-6 py-5 bg-black/70"
+                        className={cx(
+                          "backdrop-blur-sm px-6 py-5",
+                          isDark ? "bg-black/70" : "bg-black/55"
+                        )}
                       >
                         <div className="flex items-center justify-between">
                           <span
-                            className="text-xs tracking-[0.28em] uppercase text-[#C9A84C]"
+                            className={cx(
+                              "text-xs tracking-[0.28em] uppercase",
+                              isDark ? "text-[#C9A84C]" : "text-[#D4AF37]"
+                            )}
                           >
                             View +
                           </span>
                           <ArrowRight
-                            className="h-4 w-4 text-[#C9A84C]"
+                            className={cx(
+                              "h-4 w-4",
+                              isDark ? "text-[#C9A84C]" : "text-[#D4AF37]"
+                            )}
                           />
                         </div>
                       </div>
@@ -780,7 +867,7 @@ export default function HomePage() {
             isDark ? "bg-[linear-gradient(#111111,#0A0A0A)]" : "bg-[linear-gradient(#E8E2D6,#FCF9F5)]"
           )}
         >
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 py-16 md:py-24">
             <motion.div
               ref={statsRef}
               initial="hidden"
@@ -838,7 +925,7 @@ export default function HomePage() {
           id="testimonials"
           className={cx(isDark ? "bg-[#111111]" : "bg-[#E8E2D6]")}
         >
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 py-16 md:py-24">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -931,7 +1018,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/70" />
           <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_20%,rgba(201,168,76,0.20)_0%,rgba(0,0,0,0)_55%)]" />
 
-          <div className="relative w-full max-w-screen-xl mx-auto px-5 md:px-8 py-20 md:py-28">
+          <div className="relative mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -946,11 +1033,11 @@ export default function HomePage() {
               <h2 className="mt-5 font-[var(--font-serif)] text-3xl md:text-5xl leading-tight">
                 Weave your moments into everlasting memories
               </h2>
-               <div className="mt-10 flex justify-center w-full">
-                 <Button href="#contact" variant="solid" className="px-8 py-3.5 w-full sm:w-auto">
-                   Book Your Date <ArrowRight className="h-4 w-4" />
-                 </Button>
-               </div>
+              <div className="mt-10 flex justify-center">
+                <Button href="#contact" variant="solid" className="px-8 py-3.5">
+                  Book Your Date <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -959,7 +1046,7 @@ export default function HomePage() {
           id="contact"
           className={cx(isDark ? "bg-[#0A0A0A]" : "bg-[#FCF9F5]")}
         >
-          <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 py-16 md:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
               <motion.div
                 initial="hidden"
@@ -1077,7 +1164,7 @@ export default function HomePage() {
       </main>
 
       <footer className={cx(isDark ? "bg-[#050505]" : "bg-[#111111]")}>
-        <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-12">
+        <div className="mx-auto max-w-6xl px-5 md:px-8 py-12">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
             <div
               className={cx(
@@ -1154,4 +1241,294 @@ export default function HomePage() {
     </div>
   );
 }
+</file>
 
+<file path="public/file.svg">
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+</file>
+
+<file path="public/globe.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+</file>
+
+<file path="public/next.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+</file>
+
+<file path="public/vercel.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+</file>
+
+<file path="public/window.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+</file>
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="AGENTS.md">
+<!-- BEGIN:nextjs-agent-rules -->
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+<!-- END:nextjs-agent-rules -->
+</file>
+
+<file path="CLAUDE.md">
+@AGENTS.md
+</file>
+
+<file path="eslint.config.mjs">
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+</file>
+
+<file path="next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+</file>
+
+<file path="postcss.config.mjs">
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+</file>
+
+<file path="README.md">
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="app/globals.css">
+@import "tailwindcss";
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria,
+    "Times New Roman", Times, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+</file>
+
+<file path="app/layout.tsx">
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "RVR PRO — Wedding Photography",
+  description: "Dark, cinematic wedding films & photography.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className="h-full antialiased">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-[#0A0A0A] text-white">
+        {children}
+      </body>
+    </html>
+  );
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "rvpro-wedding",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "gsap": "^3.14.2",
+    "lucide-react": "^1.8.0",
+    "next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "swiper": "^12.1.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</file>
+
+</files>
