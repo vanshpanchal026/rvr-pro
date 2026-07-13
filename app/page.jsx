@@ -382,12 +382,12 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_20%,rgba(201,168,76,0.18)_0%,rgba(0,0,0,0)_55%)]" />
 
-          <div className="relative w-full max-w-screen-xl mx-auto flex min-h-screen flex-col justify-center px-4 md:px-12 pt-24 pb-20">
+          <div className="relative z-10 w-full max-w-screen-xl mx-auto flex min-h-screen flex-col items-start justify-end md:justify-center px-4 md:px-12 pt-24 pb-24">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="mx-auto w-full max-w-4xl text-center"
+              className="w-full max-w-4xl text-left md:text-center md:mx-auto pb-12 md:pb-0"
             >
               <motion.p
                 variants={fadeInUp}
@@ -407,14 +407,14 @@ export default function HomePage() {
 
               <motion.p
                 variants={fadeInUp}
-                className="mx-auto mt-6 max-w-2xl text-sm sm:text-base leading-loose text-[#AAAAAA]"
+                className="mx-auto mt-6 max-w-2xl text-sm sm:text-base leading-loose text-[#AAAAAA] md:mx-auto"
               >
                 Timeless wedding stories, captured with elegance and emotion.
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
-                className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4 w-full"
+                className="mt-10 flex flex-col md:flex-row items-center md:justify-center gap-4 w-full"
               >
                 <Button href="#gallery" variant="solid" className="w-full md:w-auto">
                   EXPLORE OUR STORIES
@@ -464,25 +464,28 @@ export default function HomePage() {
         </section>
 
         <section className={cx(isDark ? "bg-[#C9A84C] text-black" : "bg-[#D4AF37] text-black")}>
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <div
-              className="flex w-[200%] whitespace-nowrap py-3"
-              style={{ animation: "marqueeLeft 18s linear infinite" }}
+              className="flex w-max whitespace-nowrap py-3.5"
+              style={{ animation: "marqueeLeft 20s linear infinite" }}
             >
               {[0, 1].map((i) => (
                 <div
                   key={i}
-                  className="flex w-1/2 items-center justify-around gap-8 px-6 text-xs sm:text-sm font-semibold tracking-[0.30em] uppercase"
+                  className="flex items-center gap-12 px-6 text-xs sm:text-sm font-semibold tracking-[0.30em] uppercase shrink-0"
                 >
-                  <span>WEDDINGS</span>
-                  <span>FILMS</span>
                   <span>PHOTOGRAPHY</span>
+                  <span className="opacity-40">·</span>
                   <span>ALBUMS</span>
+                  <span className="opacity-40">·</span>
                   <span>PRE-WEDDING</span>
-                  <span>EVENTS</span>
+                  <span className="opacity-40">·</span>
                   <span>WEDDINGS</span>
+                  <span className="opacity-40">·</span>
                   <span>FILMS</span>
-                  <span>PHOTOGRAPHY</span>
+                  <span className="opacity-40">·</span>
+                  <span>EVENTS</span>
+                  <span className="opacity-40">·</span>
                 </div>
               ))}
             </div>
