@@ -370,6 +370,13 @@ export default function HomePage() {
             muted
             loop
             playsInline
+            preload="auto"
+            ref={(el) => {
+              if (el) {
+                el.muted = true;
+                el.play().catch(() => {});
+              }
+            }}
             className="absolute inset-0 w-full h-full object-cover z-0"
           />
 
@@ -511,7 +518,7 @@ export default function HomePage() {
                     className="h-[520px] sm:h-[620px] w-full bg-cover bg-center will-change-transform"
                     style={{
                       backgroundImage:
-                        "url('https://picsum.photos/700/900?random=1')",
+                        "url('/wedding_1.png')",
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
@@ -902,7 +909,7 @@ export default function HomePage() {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://picsum.photos/1600/600?random=20')",
+                "url('/wedding_2.png')",
             }}
           />
           <div className="absolute inset-0 bg-black/70" />
