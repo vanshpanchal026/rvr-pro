@@ -215,12 +215,10 @@ export default function HomePage() {
     []
   );
 
-  const statsRef = useRef(null);
-  const statsInView = useInView(statsRef, { once: true, amount: 0.35 });
-  const weddings = useCountUp({ to: 2000, durationMs: 1400, enabled: statsInView });
-  const years = useCountUp({ to: 10, durationMs: 1100, enabled: statsInView });
-  const cities = useCountUp({ to: 5, durationMs: 1000, enabled: statsInView });
-  const awards = useCountUp({ to: 50, durationMs: 1400, enabled: statsInView });
+  const weddings = 2000;
+  const years = 10;
+  const cities = 5;
+  const awards = 50;
 
   return (
     <div
@@ -367,38 +365,33 @@ export default function HomePage() {
       <main id="home">
         <section className="relative min-h-screen overflow-hidden">
           <video
-            className="absolute inset-0 h-full w-full object-cover"
+            src="/hero-bg.mp4"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
+            className="absolute inset-0 w-full h-full object-cover z-0"
           />
 
-          <div
-            className="absolute inset-0"
-            style={{ background: "rgba(0,0,0,0.55)" }}
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_20%,rgba(201,168,76,0.18)_0%,rgba(0,0,0,0)_55%)]" />
+          <div className="absolute inset-0 bg-black/40 z-[1]" />
 
-          <div className="relative z-10 w-full max-w-screen-xl mx-auto flex min-h-screen flex-col items-start justify-end md:justify-center px-4 md:px-12 pt-24 pb-24">
+          <div className="relative z-10 w-full max-w-screen-xl mx-auto flex min-h-screen flex-col items-start justify-end md:justify-center px-6 py-16 md:px-16 md:py-24">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="w-full max-w-4xl text-left md:text-center md:mx-auto pb-12 md:pb-0"
+              className="w-full max-w-4xl pb-12 md:pb-0"
             >
               <motion.p
                 variants={fadeInUp}
-                className="text-[11px] sm:text-xs tracking-[0.38em] uppercase text-[#C9A84C]"
+                className="text-[11px] sm:text-xs tracking-[0.38em] uppercase text-[#C9A84C] text-center md:text-left"
               >
                 WEDDING STORYTELLERS IN HYDERABAD
               </motion.p>
 
               <motion.h1
                 variants={fadeInUp}
-                className="mt-7 font-[var(--font-serif)] font-semibold leading-[0.95] text-4xl md:text-6xl lg:text-8xl"
+                className="mt-7 font-[var(--font-serif)] text-3xl md:text-5xl lg:text-7xl font-bold leading-tight text-center md:text-left"
               >
                 Crafted with Love,
                 <br />
@@ -407,19 +400,19 @@ export default function HomePage() {
 
               <motion.p
                 variants={fadeInUp}
-                className="mx-auto mt-6 max-w-2xl text-sm sm:text-base leading-loose text-[#AAAAAA] md:mx-auto"
+                className="mt-6 text-sm md:text-base text-center md:text-left max-w-xl text-[#AAAAAA]"
               >
                 Timeless wedding stories, captured with elegance and emotion.
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
-                className="mt-10 flex flex-col md:flex-row items-center md:justify-center gap-4 w-full"
+                className="mt-10 flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
               >
-                <Button href="#gallery" variant="solid" className="w-full md:w-auto">
+                <Button href="#gallery" variant="solid" className="w-full sm:w-auto">
                   EXPLORE OUR STORIES
                 </Button>
-                <Button href="#contact" variant="darkOutline" className="w-full md:w-auto">
+                <Button href="#contact" variant="darkOutline" className="w-full sm:w-auto">
                   {"LET'S TALK →"}
                 </Button>
               </motion.div>
@@ -429,16 +422,17 @@ export default function HomePage() {
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              className="mt-14 mx-auto grid w-full max-w-3xl grid-cols-3 gap-3 sm:gap-8 text-center"
+              className="flex flex-wrap justify-center md:justify-start gap-6 mt-6"
             >
               {[
                 ["2000+", "Stories"],
                 ["10+", "Years"],
                 ["5", "Cities"],
+                ["50+", "Awards"],
               ].map(([n, label]) => (
                 <div
                   key={label}
-                  className="rounded-3xl border border-white/10 bg-black/35 backdrop-blur-sm px-4 py-4"
+                  className="rounded-3xl border border-white/10 bg-black/35 backdrop-blur-sm px-6 py-4"
                 >
                   <div className="font-[var(--font-serif)] text-2xl sm:text-3xl text-[#C9A84C]">
                     {n}
@@ -621,12 +615,8 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
-              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+            <div
+              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
             >
               {[
                 {
@@ -648,14 +638,10 @@ export default function HomePage() {
                   link: "EXPLORE ALBUMS →",
                 },
               ].map((s) => (
-                <motion.div
+                <div
                   key={s.title}
-                  variants={serviceItem}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  style={{ willChange: "transform" }}
                   className={cx(
-                    "group relative rounded-3xl p-8",
+                    "group relative rounded-3xl p-8 w-full",
                     "bg-[#0D0D0D] border border-white/10 text-white",
                     "shadow-[0_18px_70px_rgba(0,0,0,0.55)]",
                     "transition-all duration-300 hover:-translate-y-1.5"
@@ -697,15 +683,15 @@ export default function HomePage() {
                   <div className="mt-5 inline-flex items-center gap-2 text-xs tracking-[0.22em] uppercase text-white/70 group-hover:text-[#C9A84C] transition">
                     {s.link}
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         <section
           id="gallery"
-          className="relative bg-[#0A0A0A] text-white overflow-hidden"
+          className="relative bg-[#0A0A0A] text-white"
         >
           <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
             <motion.div
@@ -717,7 +703,7 @@ export default function HomePage() {
               style={{ willChange: "transform" }}
             >
               <h2
-                className="font-[var(--font-serif)] text-3xl md:text-5xl text-white"
+                className="font-[var(--font-serif)] text-3xl md:text-5xl text-white px-4 text-center w-full overflow-visible"
               >
                 STORIES WE FRAMED
               </h2>
@@ -728,17 +714,12 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-              className="mt-12 columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]"
+            <div
+              className="mt-12 columns-2 lg:columns-3 gap-4"
             >
               {gallery.map((img) => (
-                <div key={img.id} className="mb-4 break-inside-avoid w-full">
+                <div key={img.id} className="break-inside-avoid mb-4 w-full">
                   <motion.a
-                    variants={galleryItem}
                     whileHover={{ scale: 1.04 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     style={{ willChange: "transform" }}
@@ -774,7 +755,7 @@ export default function HomePage() {
                   </motion.a>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -784,24 +765,17 @@ export default function HomePage() {
           )}
         >
           <div className="w-full max-w-screen-xl mx-auto px-5 md:px-8 py-16 md:py-24">
-            <motion.div
-              ref={statsRef}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.35 }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
+            <div
               className="grid grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {[
-                { n: `${weddings}+`, label: "Weddings", icon: Users },
-                { n: `${years}+`, label: "Years", icon: Clapperboard },
-                { n: `${cities}`, label: "Cities", icon: MapPin },
-                { n: `${awards}+`, label: "Awards", icon: Award },
+                { n: "2000+", label: "Weddings", icon: Users },
+                { n: "10+", label: "Years", icon: Clapperboard },
+                { n: "5", label: "Cities", icon: MapPin },
+                { n: "50+", label: "Awards", icon: Award },
               ].map((s) => (
-                <motion.div
+                <div
                   key={s.label}
-                  variants={statItem}
-                  style={{ willChange: "transform" }}
                   className={cx(
                     "rounded-3xl p-7 text-center backdrop-blur-sm shadow-[0_24px_80px_rgba(0,0,0,0.35)]",
                     isDark
@@ -831,9 +805,9 @@ export default function HomePage() {
                   >
                     {s.label}
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -857,7 +831,7 @@ export default function HomePage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.25 }}
               variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
-              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4 md:px-0"
             >
               {[
                 {
@@ -883,7 +857,7 @@ export default function HomePage() {
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   style={{ willChange: "transform" }}
                   className={cx(
-                    "relative rounded-3xl p-8 shadow-[0_18px_70px_rgba(0,0,0,0.35)]",
+                    "relative w-full p-6 rounded-xl overflow-visible shadow-[0_18px_70px_rgba(0,0,0,0.35)]",
                     isDark
                       ? "bg-[#1A1A1A] border border-[#2A2A2A]"
                       : "bg-[#FCF9F5] border border-black/10"
@@ -897,7 +871,7 @@ export default function HomePage() {
                   />
                   <p
                     className={cx(
-                      "mt-5 text-sm leading-loose",
+                      "mt-5 text-sm leading-relaxed",
                       isDark ? "text-[#AAAAAA]" : "text-[#333333]/75"
                     )}
                   >
@@ -911,7 +885,7 @@ export default function HomePage() {
                   />
                   <div
                     className={cx(
-                      "mt-5 font-[var(--font-serif)] italic",
+                      "mt-4 text-xs font-[var(--font-serif)] italic",
                       isDark ? "text-[#C9A84C]" : "text-[#D4AF37]"
                     )}
                   >
@@ -1020,7 +994,7 @@ export default function HomePage() {
                 variants={fadeInUp}
                 style={{ willChange: "transform" }}
                 className={cx(
-                  "rounded-3xl p-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)]",
+                  "rounded-3xl p-6 sm:p-8 shadow-[0_24px_90px_rgba(0,0,0,0.35)]",
                   isDark
                     ? "border border-white/10 bg-[#111111]"
                     : "border border-black/10 bg-[#E8E2D6]"
@@ -1091,7 +1065,7 @@ export default function HomePage() {
               RVR PRO
             </div>
 
-            <div className="hidden md:flex items-center gap-8 text-[11px] tracking-[0.26em] uppercase text-white/70">
+            <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-[11px] tracking-[0.26em] uppercase text-white/70">
               {[
                 ["Home", "#home"],
                 ["About", "#about"],
